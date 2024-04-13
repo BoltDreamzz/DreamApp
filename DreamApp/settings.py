@@ -22,7 +22,7 @@ CSRF_TRUSTED_ORIGINS = ["https://dreamapp-hbpq.onrender.com"]
 
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "shop:splash"
+LOGOUT_REDIRECT_URL = "/"
 # Application definition
 
 INSTALLED_APPS = [

@@ -15,40 +15,72 @@ from .forms import SignupForm, LoginForm
 
 
 def login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(data=request.POST)
+    if request.method == "POST":
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, "Welcome!")
-                # Redirect to a success page
-                return redirect('shop:index')
-            else:
-                # Return an 'invalid login' error message.
-                return render(request, 'userauths/login.html', {'form': form, 'error': 'Invalid username or password'})
+            user = form.get_user()
+            login(request, user)
+            messages.success(request, f"Welcome, '{user}'")
+            return redirect("shop:index")
+
     else:
         form = LoginForm()
-    return render(request, 'userauths/login.html', {'form': form})
+    context = {
+        "form": form
+    }
+    return render(request, "userauths/login.html", context)
 
+
+# def login_view(request):
+#     if request.method == 'POST':
+#         form = LoginForm(data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password')
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 messages.success(request, "Welcome!")
+#                 # Redirect to a success page
+#                 return redirect('shop:index')
+#             else:
+#                 # Return an 'invalid login' error message.
+#                 return render(request, 'userauths/login.html', {'form': form, 'error': 'Invalid username or password'})
+#     else:
+#         form = LoginForm()
+#     return render(request, 'userauths/login.html', {'form': form})
 
 def signup_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SignupForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request, f"Welcome {username}")
-            # Redirect to a success page
-            return redirect('shop:index')
+            user = form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(request, f"Registered as '{username}'. Now log in.")
+            return redirect("userauths:login")
     else:
         form = SignupForm()
-    return render(request, 'userauths/signup.html', {'form': form})
+    return render(request, "userauths/signup.html", {
+        "form": form,
+    })
+
+
+# def signup_view(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=password)
+#             login(request, user)
+#             messages.success(request, f"Welcome {username}")
+#             # Redirect to a success page
+#             return redirect('shop:index')
+#     else:
+#         form = SignupForm()
+#     return render(request, 'userauths/signup.html', {'form': form})
 
 
 # def login_view(request):
