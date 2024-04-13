@@ -17,6 +17,8 @@ SECRET_KEY = 'django-insecure-&x$i$r6v&jexlck+f#7n)hgqrmbv+3yk(^(%#pp@m#ui0amx4d
 DEBUG = 'True'
 
 ALLOWED_HOSTS = ["dreamapp-hbpq.onrender.com", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://dreamapp-hbpq.onrender.com"]
+
 
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "/"
