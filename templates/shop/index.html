@@ -1,0 +1,238 @@
+{%extends 'partials/base.html'%}
+{%block title%}Home{%endblock%}
+
+{%block content%}
+<style>
+    .scrollable-row::-webkit-scrollbar {
+        display: none;
+    }
+    .advert-container {
+            width: 100%;
+            max-width: 800px; /* Adjust maximum width as needed */
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden; /* To ensure the image doesn't overflow */
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .advert-container {
+                padding: 15px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .advert-container {
+                padding: 10px;
+            }
+        }
+
+        /* Additional styles for content within the container */
+        .advert-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+        }
+    .scrollable-row {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .scrollable-item {
+            flex: 0 0 auto;
+            margin-right: 20px;
+            width: 200px; /* Set the width of each item as needed */
+            height: 300px; /* Set the height of each item as needed */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+        }
+
+        .scrollable-item img {
+            width: 100%;
+            height: 200px; /* Set the height of the image as needed */
+            object-fit: cover;
+        }
+
+        .scrollable-item .title {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 0 10px;
+        }
+    .category-scroll {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            flex: 0 0 auto;
+            margin-right: 20px;
+            width: 200px; /* Initial width of each item */
+            height: 50px; /* Height of each item */
+            line-height: 50px; /* Centering the text vertically */
+            text-align: center;
+            background-color: #f0f0f0;
+            border-radius: 35px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .category-item {
+                width: 25%; /* Each item takes 25% width on smaller screens */
+                max-width: none; /* No maximum width */
+                margin-right: 10px;
+            }
+        }
+    .custom-bg {
+            background-color: #f0f0f0; /* Change to the desired background color */
+        }
+</style>
+{%if user.is_authenticated%}
+<div class="lead my-3">
+    <h1 class="fw-bold">Hello {{user.username}}!</h1>
+    <h6 style="  font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
+</div>
+{%else%}
+<div class="lead my-3">
+    <h1 class="fw-bold">Hello User!</h1>
+    <a href="#" class="btn btn-lg btn-dark">Login</a>
+    <h6 style="  font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
+</div>
+{%endif%}
+
+
+<div class="advert-container mt-2">
+    <img class="advert-image" src="https://via.placeholder.com/600x300" alt="Advertisement Image">
+</div>
+
+<!--SEARCH-->
+<div class="mt-4 d-flex align-items-center justify-content-between">
+    <form class="w-100 me-3 " role="search">
+        <input type="search" class="form-control rounded-5" placeholder="'Hoodies'" aria-label="Search">
+    </form>
+    <a href="#" class="btn rounded-3 bg-body-tertiary"><i class="bi bi-filter"></i></a>
+</div>
+<!--CATEGORY-->
+<div class="container mt-3 d-flex justify-content-between align-items-center">
+    <h5 class="mt-2">Categories </h5>
+    <a href="{%url 'shop:categories'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+</div>
+<div class="category-scroll">
+    {%for cat in categories%}
+    <div class="category-item"><a href="{% url 'shop:products_by_category' cat.id %}" class="text-decoration-none text-dark">{{cat.name}}</a></div>
+    {%endfor%}
+
+</div>
+
+<div class="container d-flex justify-content-between align-items-center">
+    <h5 class="mt-2">Top products <span class="badge custom-bg text-success">New</span></h5>
+    <a href="{%url 'shop:explore'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+</div>
+<div class="scrollable-row">
+    {%for pro in products%}
+    <div class="scrollable-item rounded-4 shadow-sm">
+        <a href="{%url 'shop:detail' pro.id%}" class="text-decoration-none text-dark">
+            <img src="{{pro.image.url}}" alt="{{ pro.name }}">
+
+            <div class="d-flex text-center mt-2 flex-column justify-content-between">
+
+                <h6>{{pro.name}}</h6>
+                {%if pro.discount%}
+                <div class="d-flex mt-2 px-2 flex justify-content-between">
+                    <h5><strong>₦ {{pro.price}}</strong></h5>
+                    <p><span class="badge bg-dark text-white">{{pro.discount}}% off</span></p>
+
+                </div>
+                {%else%}
+                <div class="d-flex mt-2 px-2 flex justify-content-center">
+                    <h5><strong>₦ {{pro.price}}</strong></h5>
+
+                </div>
+
+                {%endif%}
+
+            </div>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+
+<div class="container mt-2 d-flex justify-content-between align-items-center">
+    <h5 class="mt-2">Kiddies <span class="badge custom-bg text-success">New</span></h5>
+    <a href="{%url 'shop:explore'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+</div>
+<div class="scrollable-row">
+    {%for kpro in kiddiesPro%}
+    <div class="scrollable-item rounded-4 shadow-sm">
+        <a href="{%url 'shop:detail' kpro.id%}" class="text-decoration-none text-dark">
+            <img src="{{kpro.image.url}}" alt="{{ kpro.name }}">
+
+            <div class="d-flex text-center mt-2 flex-column justify-content-between">
+
+                <h6>{{kpro.name}}</h6>
+                {%if pro.discount%}
+                <div class="d-flex mt-2 px-2 flex justify-content-between">
+                    <h5><strong>₦ {{kpro.price}}</strong></h5>
+                    <p><span class="badge bg-dark text-white">{{kpro.discount}}% off</span></p>
+
+                </div>
+                {%else%}
+                <div class="d-flex mt-2 px-2 flex justify-content-center">
+                    <h5><strong>₦ {{kpro.price}}</strong></h5>
+
+                </div>
+
+                {%endif%}
+
+            </div>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+
+<div class="container mt-2 d-flex justify-content-between align-items-center">
+    <h5 class="mt-2">Ladies</h5>
+    <a href="{%url 'shop:explore'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+</div>
+<div class="scrollable-row">
+    {%for bpro in BarbiesPro%}
+    <div class="scrollable-item rounded-4 shadow-sm">
+        <a href="{%url 'shop:detail' bpro.id%}" class="text-decoration-none text-dark">
+            <img src="{{bpro.image.url}}" alt="{{ bpro.name }}">
+
+            <div class="d-flex text-center mt-2 flex-column justify-content-between">
+
+                <h6>{{bpro.name}}</h6>
+                {%if bpro.discount%}
+                <div class="d-flex mt-2 px-2 flex justify-content-between">
+                    <h5><strong>₦ {{bpro.price}}</strong></h5>
+                    <p><span class="badge bg-dark text-white">{{bpro.discount}}% off</span></p>
+
+                </div>
+                {%else%}
+                <div class="d-flex mt-2 px-2 flex justify-content-center">
+                    <h5><strong>₦ {{bpro.price}}</strong></h5>
+
+                </div>
+
+                {%endif%}
+
+            </div>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock content%}

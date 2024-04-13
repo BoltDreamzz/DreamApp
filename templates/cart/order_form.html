@@ -1,0 +1,13 @@
+{%extends 'partials/base.html'%}
+{%load crispy_forms_tags%}
+{%block title%}Order form{%endblock%}
+
+{%block content%}
+<h2>Order Form</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Place Order</button>
+</form>
+
+{%endblock%}

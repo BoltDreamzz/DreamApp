@@ -1,0 +1,50 @@
+{%extends 'partials/base.html'%}
+{%load static%}
+
+{%block title%}Categories{%endblock%}
+
+{%block content%}
+
+<style>
+    .ffee h3 {
+        color: black;
+    }
+</style>
+
+<h3 class="fw-bold mt-3">Filter products by categories</h3>
+<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 pt-2 pb-5">
+    {%for c in categories%}
+    <div class="col">
+        <a href="#" class="text-decoration-none text-dark">
+                    <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+             style="background-image: url('{{c.image.url}}'); background-size: cover;">
+            <div class="d-flex ffee flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-2 mt-2 mb-5 display-6 lh-1 fw-bold">{{c.name}}</h3>
+                <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto">
+                        <img src="{%static 'home_media/Dreamzz.co official Merch logo black.png'%}" alt="Bootstrap" width="32" height="32"
+                             class="rounded-circle border border-white">
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                        <svg class="bi me-2" width="1em" height="1em">
+                            <use xlink:href="#geo-fill"></use>
+                        </svg>
+                        <small>Earth</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <svg class="bi me-2" width="1em" height="1em">
+                            <use xlink:href="#calendar3"></use>
+                        </svg>
+                        <small>3d</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        </a>
+    </div>
+    {%endfor%}
+
+</div>
+
+{%endblock%}

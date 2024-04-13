@@ -1,0 +1,321 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%}{%endblock title%} | Dreamzz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./style.css" class="stylesheet">
+    <script src="https://kit.fontawesome.com/ce650693ef.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Asar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Peralta&display=swap" rel="stylesheet">
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    /* Styles for navbar */
+    *{
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #fbfcfd;
+        font-family: "Asar", serif;
+    }
+
+.navbar {
+  background-color: #fbfcfd;
+}
+.scrollable-row::-webkit-scrollbar {
+        display: none;
+    }
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  max-width: fit-container;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+}
+
+.navbar-links {
+  display: none;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 5px;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Hamburger menu styles */
+.navbar-toggle {
+  display: block;
+}
+
+.hamburger {
+  cursor: pointer;
+  background: none;
+  border: none;
+
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #333333;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  padding-top: 60px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 10px 20px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+.show-sidebar {
+  left: 0;
+}
+    /* Add styles for exit icon */
+.exit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333333;
+}
+
+.exit-icon:hover {
+  color: #666666;
+
+}
+    .fa-bars {
+        font-size: 25px;
+    }
+    .bi {
+        font-size: 25px;
+    }
+    .bi-box-seam-fill{
+        font-size: 20px;
+
+    }
+    .bi-heart-fill {
+                font-size: 20px;
+
+    }
+    .notification .bi span {
+        max-width: 3px;
+    }
+    .custom-bg {
+            background-color: #f0f0f0; /* Change to the desired background color */
+    }
+    #loading-screen {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+    .stick {
+        background: #fbfcfd;
+    }
+    .zboy {
+        z-index: 4;
+    }
+
+</style>
+<body>
+<!--NAVBAR-->
+
+
+<div class="container zboy stick sticky-top pt-4 navbar-container">
+
+    <!--    <div class="navbar-toggle">-->
+    <button class="hamburger d-flex align-items-center navbar-toggle" id="hamburger-btn">
+
+        <i class="fi fs-1 fi-br-bars-staggered"></i>
+    </button>
+    <!--    </div>-->
+    <div class="navbar-brand ml-2">
+        <a href="/" class="navbar-logo text-decoration-none"
+           style="font-family: 'Eczar', serif; font-weight: 600; font-size: 30px;">Dreamzz</a>
+    </div>
+    <div class="notification">
+        <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
+                class="fi fs-1 fi-br-cart-minus"></i> <span
+                class="position-absolute top-1 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden">New alerts</span>
+  </span>
+        </a>
+<!--        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">-->
+<!--            <span class="badge fs-6 bg-body-tertiary text-danger">2</span> <i class="fi fs-1 fi-br-envelope-dot"></i>-->
+<!--        </a>-->
+    </div>
+</div>
+<div id="sidebar" class="sidebar overflow-x d-flex flex-column justify-content-between">
+
+    <button class="exit-icon" id="exit-btn"><i class="bi bi-x-lg"></i></button>
+    <ul>
+        <li>
+            <div class="text-center my-2">
+                <!--                <img width="50" src="{% static 'home_media/Dreamzz hearts.png' %}" alt="">-->
+                <img width="120" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">
+
+            </div>
+        </li>
+        <li><a href="/" class="{% if request.path == '/' %}text-primary fs-4{% endif %}">Home</a></li>
+        <li><a href="{% url 'shop:explore' %}" class="{% if request.path == '/explore/' %}text-primary fs-4{% endif %}">Products
+            <span class="badge custom-bg text-success">New</span></a></li>
+        <li><a href="{% url 'shop:categories' %}"
+               class="{% if request.path == '/categories/' %}text-primary fs-4{% endif %}">Categories</a></li>
+        <li><a href="#" class="{% if request.path == '/about/' %}text-primary fs-4{% endif %}">Contact</a></li>
+        <hr class="px-4">
+        <li><a href="#"><i class="bi bi-box-seam-fill"></i> My orders <span
+                class="badge custom-bg text-info">Pending</span></a></li>
+        <li><a href="#"><i class="bi bi-heart-fill"></i> Wishlist</a></li>
+    </ul>
+    <ul class="d-flex flex-column mx-3 my-5">
+
+        <li>
+            <a href="#" class="d-flex align-items-center justify-content-between px-4 text-dark text-decoration-none">
+                <img width="30" src="{% static 'home_media/user.png' %}" alt="">
+
+                <strong> {{user.username}}</strong>
+            </a>
+        </li>
+
+        <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i> Sign off</a>
+
+        <!--        <a href="#" class="btn btn-outline-dark">Login</a>-->
+
+        <!--        <li class=""><a href="#" class="btn btn-dark"></a>Login</li>-->
+        <!--        <li class=""><a href="#" class="btn btn-dark"></a> Logout</li>-->
+
+
+    </ul>
+</div>
+
+
+<script src="{% static 'js/style.js' %}"></script>
+
+<!--NAVBAR END-->
+<!--ALERT-->
+{% if messages %}
+{% for message in messages %}
+<div id="alertDiv" class="container">
+    <div class="alert text-center alert-{{ message.tags }}">
+        <strong><span><i class="bi bi-bell-fill"></i></span> {{ message }}</strong>
+    </div>
+</div>
+
+{% endfor %}
+<script>
+    // Function to remove the alert div after 8 seconds
+    setTimeout(function(){
+        var alertDiv = document.getElementById('alertDiv');
+        if (alertDiv) {
+            alertDiv.remove();
+        }
+    }, 5000); // 8000 milliseconds = 8 seconds
+</script>
+{% endif %}
+
+<div id="loading-screen">
+    <div class="spinner"></div>
+</div>
+<script>
+    window.addEventListener('load', function () {
+      document.getElementById('loading-screen').style.display = 'none';
+    });
+</script>
+<div class="container">
+    {%block content%}{%endblock%}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

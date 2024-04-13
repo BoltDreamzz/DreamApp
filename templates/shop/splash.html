@@ -1,0 +1,26 @@
+{%extends 'partials/base.html'%}
+{%load static%}
+{%block title%}Splash{%endblock%}
+
+{%block content%}
+<style>
+    .navbar-container {
+        display: none;
+    }
+</style>
+
+<div class="container my-5" style="padding-top: 22vh;">
+<!--    <h1 class="display-1">Hello</h1>-->
+    <div class="text-center mt-5">
+        <img width="300" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">
+    </div>
+    <div class="text-center mt-5">
+        <a href="{%url 'userauths:login'%}" class="btn w-50 btn-lg shadow-md btn-dark rounded-pill">Login/Signup</a>
+    </div>
+    <div class="text-center mt-5">
+        <h6 class="text-muted"><strong>Dreamzz.co</strong></h6>
+<!--        <img width="300" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">-->
+    </div>
+</div>
+
+{%endblock%}
