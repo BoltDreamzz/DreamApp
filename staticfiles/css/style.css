@@ -1,0 +1,91 @@
+/* Styles for navbar */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  display: none;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Hamburger menu styles */
+.navbar-toggle {
+  display: block;
+}
+
+.hamburger {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #333333;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  padding-top: 60px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 10px 20px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: bold;
+}
+
+.show-sidebar {
+  left: 0;
+}
