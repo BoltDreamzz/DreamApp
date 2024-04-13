@@ -1,4 +1,5 @@
 {%extends 'partials/base.html'%}
+{%load static%}
 {%block title%}Home{%endblock%}
 
 {%block content%}
@@ -9,18 +10,22 @@
     .advert-container {
             width: 100%;
             max-width: 800px; /* Adjust maximum width as needed */
+            max-height: 450px; /* Adjust maximum width as needed */
             margin: 0 auto;
             background-color: #f0f0f0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             overflow: hidden; /* To ensure the image doesn't overflow */
+            object-fit: cover;
         }
 
         /* Responsive styles */
         @media screen and (max-width: 768px) {
             .advert-container {
                 padding: 15px;
+                max-height: 300px; /* Adjust maximum width as needed */
+
             }
         }
 
@@ -106,16 +111,17 @@
     <h6 style="  font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
 </div>
 {%else%}
-<div class="lead my-3">
+<div class="lead my-3 d-flex flex-column">
     <h1 class="fw-bold">Hello User!</h1>
-    <a href="#" class="btn btn-lg btn-dark">Login</a>
-    <h6 style="  font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
+    <h6 style="font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
+
+    <a href="{%url 'userauths:login'%}" class="btn btn-lg btn-dark">Login</a>
 </div>
 {%endif%}
 
 
 <div class="advert-container mt-2">
-    <img class="advert-image" src="https://via.placeholder.com/600x300" alt="Advertisement Image">
+    <img class="advert-image" src="{%static 'home_media/Merch 63.jpg'%}" alt="Advertisement Image">
 </div>
 
 <!--SEARCH-->
@@ -128,11 +134,13 @@
 <!--CATEGORY-->
 <div class="container mt-3 d-flex justify-content-between align-items-center">
     <h5 class="mt-2">Categories </h5>
-    <a href="{%url 'shop:categories'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+    <a href="{%url 'shop:categories'%}" class="text-decoration-none">see all <i
+            class="bi fs-6 bi-chevron-right"></i></a>
 </div>
 <div class="category-scroll">
     {%for cat in categories%}
-    <div class="category-item"><a href="{% url 'shop:products_by_category' cat.id %}" class="text-decoration-none text-dark">{{cat.name}}</a></div>
+    <div class="category-item"><a href="{% url 'shop:products_by_category' cat.id %}"
+                                  class="text-decoration-none text-dark">{{cat.name}}</a></div>
     {%endfor%}
 
 </div>

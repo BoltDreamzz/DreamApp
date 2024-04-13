@@ -15,7 +15,7 @@
 <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 pt-2 pb-5">
     {%for c in categories%}
     <div class="col">
-        <a href="#" class="text-decoration-none text-dark">
+        <a href="{%url 'shop:products_by_category' c.id%}" class="text-decoration-none text-dark">
                     <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
              style="background-image: url('{{c.image.url}}'); background-size: cover;">
             <div class="d-flex ffee flex-column h-100 p-5 pb-3 text-white text-shadow-1">

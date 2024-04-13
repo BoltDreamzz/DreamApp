@@ -7,7 +7,6 @@ def splash(request):
     return render(request, "shop/splash.html")
 
 
-@login_required
 def index(request):
     categories = Category.objects.all()
     products = Product.objects.all()
