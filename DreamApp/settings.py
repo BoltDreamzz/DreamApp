@@ -167,7 +167,7 @@ JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on admin pages
     "show_ui_builder": True,
 
-    "site_logo": "{% static 'images/Dreamzz.co official Merch logo black.png' %}",
+    "site_logo": "{% static 'shop_media/DreamAppFavoicon.png' %}",
 
     # Whether to cache the menu tree
     "menu_cache_ttl": 60,  # in seconds
