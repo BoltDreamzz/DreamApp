@@ -115,7 +115,8 @@
     <h1 class="fw-bold">Hello User!</h1>
     <h6 style="font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
 
-    <a href="{%url 'userauths:login'%}" class="btn btn-lg btn-dark">Login</a>
+    <a href="{%url 'userauths:login'%}" class="btn btn-lg btn-dark">Login / Register</a>
+
 </div>
 {%endif%}
 
@@ -126,8 +127,9 @@
 
 <!--SEARCH-->
 <div class="mt-4 d-flex align-items-center justify-content-between">
-    <form class="w-100 me-3 " role="search">
-        <input type="search" class="form-control rounded-5" placeholder="'Hoodies'" aria-label="Search">
+    <form action="{% url 'search:find' %}" method="get" class="w-100 me-3 " role="search">
+        <input name="query" value="{{query}}" type="search" class="form-control rounded-5" placeholder="'Kiddies'"
+               aria-label="Search">
     </form>
     <a href="#" class="btn rounded-3 bg-body-tertiary"><i class="bi bi-filter"></i></a>
 </div>

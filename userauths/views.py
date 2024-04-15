@@ -1,11 +1,4 @@
-from django.shortcuts import render
 
-# Create your views here.
-# views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .models import User
-from django.contrib import messages
 from django.contrib.auth import logout as v_logout
 
 from django.shortcuts import render, redirect

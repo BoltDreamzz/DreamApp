@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
 from django.contrib.auth.decorators import login_required
+from cart.models import Order
 
 
 def splash(request):
@@ -78,3 +79,31 @@ def products_by_category(request, category_id):
     }
 
     return render(request, 'shop/explore.html', context)
+
+
+@login_required
+def order_page(request):
+    orders = Order.objects.filter(user=request.user)
+    order_count = orders.count()
+
+    return render(request, "shop/order_page.html", {
+        "orders": orders,
+        "order_count": order_count,
+    })
+
+
+@login_required
+def order_detail(request):
+    # order = get_object_or_404(Order, pk=order_id, user=request.user)
+
+    return render(request, "shop/order_detail.html", {
+        # "order": order,
+    })
+
+
+def order_success(request):
+    # order = get_object_or_404(Order, pk=order_id, user=request.user)
+
+    return render(request, "shop/order_success.html", {
+        # "order": order,
+    })

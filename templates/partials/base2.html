@@ -213,74 +213,81 @@
 <!--NAVBAR-->
 
 
-<div class="container bbgg d-flex justify-content-between align-items-center zboy stick sticky-top pt-4 navbar-container">
+<!--<div class="container bbgg d-flex justify-content-between align-items-center zboy stick sticky-top pt-4 navbar-container">-->
 
-    <!--    <div class="navbar-toggle">-->
-    <button class="hamburger d-flex align-items-center navbar-toggle" id="hamburger-btn">
+<!--    &lt;!&ndash;    <div class="navbar-toggle">&ndash;&gt;-->
+<!--    <button class="hamburger d-flex align-items-center navbar-toggle" id="hamburger-btn">-->
 
-        <i class="fi fs-1 fi-br-bars-staggered"></i>
-    </button>
-    <!--    </div>-->
-    <div class="navbar-brand ml-2">
-        <a href="/" class="navbar-logo text-decoration-none"
-           style="font-family: 'Eczar', serif; font-weight: 600; font-size: 30px;">Dreamzz</a>
-    </div>
-    <div class="notification">
-        <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
-                class="fi fs-1 fi-br-cart-minus"></i> <span
-                class="position-absolute top-1 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-    <span class="visually-hidden">New alerts</span>
-  </span>
-        </a>
-        <!--        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">-->
-        <!--            <span class="badge fs-6 bg-body-tertiary text-danger">2</span> <i class="fi fs-1 fi-br-envelope-dot"></i>-->
-        <!--        </a>-->
-    </div>
-</div>
-<div id="sidebar" class="sidebar overflow-x d-flex flex-column justify-content-between">
+<!--        <i class="fi fs-1 fi-br-bars-staggered"></i>-->
+<!--    </button>-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <div class="navbar-brand ml-2">-->
+<!--        <a href="/" class="navbar-logo text-decoration-none"-->
+<!--           style="font-family: 'Eczar', serif; font-weight: 600; font-size: 30px;">Dreamzz</a>-->
+<!--    </div>-->
+<!--    <div class="notification">-->
+<!--        <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i-->
+<!--                class="fi fs-1 fi-br-cart-minus"></i> <span-->
+<!--                class="position-absolute top-1 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">-->
+<!--    <span class="visually-hidden">New alerts</span>-->
+<!--  </span>-->
+<!--        </a>-->
+<!--        &lt;!&ndash;        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span class="badge fs-6 bg-body-tertiary text-danger">2</span> <i class="fi fs-1 fi-br-envelope-dot"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </a>&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div id="sidebar" class="sidebar overflow-x d-flex flex-column justify-content-between">-->
+<!---->
+<!--    <button class="exit-icon" id="exit-btn"><i class="bi bi-x-lg"></i></button>-->
+<!--    <ul>-->
+<!--        <li>-->
+<!--            <div class="text-center my-2">-->
+<!--                                <img width="50" src="{% static 'home_media/Dreamzz hearts.png' %}" alt="">-->
+<!--                <img width="120" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">-->
+<!---->
+<!--            </div>-->
+<!--        </li>-->
+<!--        <li><a href="/" class="{% if request.path == '/' %}text-primary fs-4{% endif %}">Home</a></li>-->
+<!--        <li><a href="{% url 'shop:explore' %}" class="{% if request.path == '/explore/' %}text-primary fs-4{% endif %}">Products-->
+<!--            <span class="badge custom-bg text-success">New</span></a></li>-->
+<!--        <li><a href="{% url 'shop:categories' %}"-->
+<!--               class="{% if request.path == '/categories/' %}text-primary fs-4{% endif %}">Categories</a></li>-->
+<!--        <li><a href="#" class="{% if request.path == '/about/' %}text-primary fs-4{% endif %}">Contact</a></li>-->
+<!--        <hr class="px-4">-->
+<!--        <li><a href="#"><i class="bi bi-box-seam-fill"></i> My orders <span-->
+<!--                class="badge custom-bg text-info">Pending</span></a></li>-->
+<!--        <li><a href="#"><i class="bi bi-heart-fill"></i> Wishlist</a></li>-->
+<!--    </ul>-->
+<!--    <ul class="d-flex flex-column mx-3 my-5">-->
+<!--        {%if user.is_authenticated%}-->
+<!---->
+<!--        <li>-->
+<!--            <a href="#" class="d-flex align-items-center justify-content-between px-4 text-dark text-decoration-none">-->
+<!--                <img width="30" src="{% static 'home_media/user.png' %}" alt="">-->
+<!---->
+<!--                <strong> {{user.username}}</strong>-->
+<!--            </a>-->
+<!--        </li>-->
+<!---->
+<!--        <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i> Sign-->
+<!--            off</a>-->
+<!--        {%else%}-->
+<!--        <a href="{%url 'userauths:logout'%}" class="btn btn-outline-dark text-bg-dark">Login/Register</a>-->
+<!--        {%endif%}-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--                <a href="#" class="btn btn-outline-dark">Login</a>-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--                <li class=""><a href="#" class="btn btn-dark"></a>Login</li>-->
+<!--                <li class=""><a href="#" class="btn btn-dark"></a> Logout</li>-->
+<!--&lt;!&ndash;&ndash;&gt;-->
 
-    <button class="exit-icon" id="exit-btn"><i class="bi bi-x-lg"></i></button>
-    <ul>
-        <li>
-            <div class="text-center my-2">
-                <!--                <img width="50" src="{% static 'home_media/Dreamzz hearts.png' %}" alt="">-->
-                <img width="120" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">
-
-            </div>
-        </li>
-        <li><a href="/" class="{% if request.path == '/' %}text-primary fs-4{% endif %}">Home</a></li>
-        <li><a href="{% url 'shop:explore' %}" class="{% if request.path == '/explore/' %}text-primary fs-4{% endif %}">Products
-            <span class="badge custom-bg text-success">New</span></a></li>
-        <li><a href="{% url 'shop:categories' %}"
-               class="{% if request.path == '/categories/' %}text-primary fs-4{% endif %}">Categories</a></li>
-        <li><a href="#" class="{% if request.path == '/about/' %}text-primary fs-4{% endif %}">Contact</a></li>
-        <hr class="px-4">
-        <li><a href="{%url 'shop:order_page'%}"><i class="bi bi-box-seam-fill"></i> My orders <span
-                class="badge custom-bg text-info">Pending</span></a></li>
-        <li><a href="#"><i class="bi bi-heart-fill"></i> Wishlist</a></li>
-    </ul>
-    <ul class="d-flex flex-column mx-3 my-5">
-        {%if user.is_authenticated%}
-
-        <li>
-            <a href="#" class="d-flex align-items-center justify-content-between px-4 text-dark text-decoration-none">
-                <img width="30" src="{% static 'home_media/user.png' %}" alt="">
-
-                <strong> {{user.username}}</strong>
-            </a>
-        </li>
-
-        <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i> Sign
-            off</a>
-        {%else%}
-        <a href="{%url 'userauths:login'%}" class="btn btn-outline-dark text-bg-dark">Login / Register</a>
-        {%endif%}
-
-    </ul>
-</div>
+<!--    </ul>-->
+<!--</div>-->
 
 
-<script src="{% static 'js/style.js' %}"></script>
+<!--<script src="{% static 'js/style.js' %}"></script>-->
 
 <!--NAVBAR END-->
 <!--ALERT-->

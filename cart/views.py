@@ -82,45 +82,10 @@ def placeOrder(request):
             for cart_item in cart.cartitem_set.all():
                 OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
             cart.cartitem_set.all().delete()
+            order.save(commit=False)
             messages.success(request, "Congratulations, your order has been placed!")
-            return redirect('cart:order_detail', order_id=order.id)
+            return redirect('cart:order_success')
     else:
         form = OrderForm()
 
     return render(request, "cart/checkout.html", {'form': form})
-
-
-def order_detail(request, order_id):
-    order = get_object_or_404(Order, pk=order_id, user=request.user)
-
-    return render(request, "cart/order_detail.html", {
-        "order": order,
-    })
-
-
-@login_required
-def orders_page(request):
-    orders = Order.objects.filter(user=request.user)
-    orders_count = orders.count()
-
-    return render(request, "cart/orders_page.html", {
-        "orders": orders,
-        "orders_count": orders_count,
-    })
-# def placeOrder(request):
-#     if request.method == 'POST':
-#         # cart = Cart(request)
-#         # cart = Cart.objects.filter(user=request.user)
-#         cart = get_object_or_404(Cart, user=request.user)
-#
-#         order = Order.objects.create(user=request.user, status='Pending')
-#
-#         for cart_item in cart.cartitem_set.all:
-#             OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
-#         cart.cartitem_set.all.delete()
-#         messages.success(request, "Congratulations, your order has been placed!")
-#         return redirect('cart:order_detail', order_id=order.id)
-#
-#     return render(request, "cart/checkout.html")
-#
-#

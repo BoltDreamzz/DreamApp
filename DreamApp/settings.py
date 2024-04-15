@@ -19,7 +19,6 @@ DEBUG = 'True'
 ALLOWED_HOSTS = ["dreamapp-hbpq.onrender.com", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["https://dreamapp-hbpq.onrender.com"]
 
-
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'cart',
     'crispy_forms',
     'crispy_bootstrap5',
+    'search',
 
 ]
 
@@ -167,10 +167,9 @@ JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on admin pages
     "show_ui_builder": True,
 
-    "site_logo": "{% static 'shop_media/DreamAppFavoicon.png' %}",
+    "site_logo": "shop_media/DreamAppFavoicon.png"
 
     # Whether to cache the menu tree
-    "menu_cache_ttl": 60,  # in seconds
 }
 
 CRISPY_ALLOWED_TEMPLATES_PACKS = "bootstrap5"
