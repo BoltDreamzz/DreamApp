@@ -47,7 +47,8 @@
                 <td>{{ i.product.name }}</td>
                 <td>{{ i.quantity }}</td>
                 <td>{{ i.product.price }}</td>
-                <td class="text-center"><a href="{%url 'cart:remove_from_cart' i.product.id%}" class="bi text-danger fs-6 bi-x-circle-fill"></a></td>
+                <td class="text-center"><a href="{%url 'cart:remove_from_cart' i.product.id%}"
+                                           class="bi text-danger fs-6 bi-x-circle-fill"></a></td>
             </tr>
             {%endfor%}
 
@@ -62,6 +63,13 @@
             </tfoot>
         </table>
     </div>
+    <div class="container mt-3">
+        <a href="{%url 'shop:explore'%}" class="btn my-1 btn-outline-dark rounded-pill btn-lg w-100">continue
+            shopping</a>
+        <a href="{%url 'cart:place_order'%}" class="btn my-1 btn-dark rounded-pill btn-lg w-100">Proceed to checkout</a>
+
+    </div>
+
     {%else%}
     <div class="container reduce text-center mt-5">
         <img width="150" src="{%static 'home_media/empty-cart.png'%}" alt="">
@@ -70,10 +78,5 @@
         </div>
     </div>
     {%endif%}
-</div>
-<div class="container mt-3">
-    <a href="{%url 'shop:explore'%}" class="btn my-1 btn-outline-dark rounded-pill btn-lg w-100">continue shopping</a>
-    <a href="{%url 'cart:place_order'%}" class="btn my-1 btn-dark rounded-pill btn-lg w-100">Proceed to checkout</a>
-
 </div>
 {%endblock%}

@@ -3,8 +3,71 @@
 {%block title%}Order detail{%endblock%}
 
 {%block content%}
-<div class="container text-center">
-    <h1>Your order detail</h1>
+<div class="container-fluid stick d-flex sticky-top mt-4 py-2 shadow-md justify-content-between px-3 mb-2 align-items-center"
+     style="background: #fbfcfd;">
+    <!--    <i class="fi fi-sr-angle-small-left"></i>-->
+    <a href="{%url 'shop:explore'%}" class="bi fs-2 fw-bold text-dark bi-chevron-left"></a>
+
+    <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
+            class="fi fs-2 fi-br-cart-minus"></i> <span
+            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden">New alerts</span>
+  </span>
+    </a>
+    <!--    <i class="bi bi-basket2-fill"></i>-->
+
 </div>
+
+
+<div class="container text-center">
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <!--    <div class="text-center rounded-circle p-2 w-50 h-50">-->
+    <div class="mt-5 text-center">
+        <lord-icon
+                src="https://cdn.lordicon.com/guqkthkk.json"
+                trigger="loop"
+                delay="1200"
+                state="in-reveal"
+                style="width:130px;height:130px">
+        </lord-icon>
+
+    </div>
+    <!--    </div>-->
+    <h4>Congratulations, We have recieved your order.</h4>
+
+</div><br><br>
+<h4>Order details</h4>
+<div class="container rounded-3 p-3 bg-body-tertiary d-flex flex-column align-items-center justify-content-between mt-3">
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Order ID</h6>
+        <h6><strong>#23g345</strong></h6>
+    </div>
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Client's name</h6>
+        <h6><strong>{{user.username}}</strong></h6>
+    </div>
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Order status</h6>
+        <h6><span class="badge custom-bg text-success">Pending</span></h6>
+    </div>
+</div><br>
+<div class="container rounded-3 p-3 bg-body-tertiary d-flex flex-column align-items-center justify-content-between mt-3">
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Destination</h6>
+        <h6><strong>82 Div, Enugu</strong></h6>
+    </div>
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Shipping fee</h6>
+        <h6><strong>#2,100</strong></h6>
+    </div>
+    <div class="d-flex mb-3 justify-content-between w-100">
+        <h6>Total bill</h6>
+        <h4><strong>#27,750</strong></h4>
+
+<!--        <h6><span class="badge custom-bg text-success">Pending</span></h6>-->
+    </div>
+</div>
+
 
 {%endblock%}
