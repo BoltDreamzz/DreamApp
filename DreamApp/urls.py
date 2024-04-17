@@ -10,6 +10,8 @@ urlpatterns = [
     path('user/', include("userauths.urls")),
     path('cart/', include("cart.urls")),
     path('search/', include("search.urls")),
+    path('wishlist/', include("wishlist.urls")),
+    path("", include("pwa.urls")),
 
 ]
 if settings.DEBUG:

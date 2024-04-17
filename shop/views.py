@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
 from django.contrib.auth.decorators import login_required
 from cart.models import Order
+from wishlist.models import WishlistItem
 
 
 def splash(request):
@@ -46,10 +47,25 @@ def detail(request, pk):
     product = get_object_or_404(Product, pk=pk, is_sold=False)
     related_items = Product.objects.filter(category=product.category, is_sold=False).exclude(pk=pk)
 
+    # Check if the product is in the user's wishlist
+    product_in_wishlist = WishlistItem.objects.filter(user=request.user, product=product).exists()
+
     return render(request, "shop/detail.html", {
         "related_items": related_items,
         "product": product,
+        "product_in_wishlist": product_in_wishlist,
     })
+
+
+# @login_required
+# def detail(request, pk):
+#     product = get_object_or_404(Product, pk=pk, is_sold=False)
+#     related_items = Product.objects.filter(category=product.category, is_sold=False).exclude(pk=pk)
+#
+#     return render(request, "shop/detail.html", {
+#         "related_items": related_items,
+#         "product": product,
+#     })
 
 
 @login_required

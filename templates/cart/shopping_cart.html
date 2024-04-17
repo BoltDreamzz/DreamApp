@@ -11,17 +11,20 @@
     }
 </style>
 
-<div class="container my-2">
-    <h6>Order placing progress</h6>
+<!--<div class="container my-2">-->
 
-    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
-         aria-valuemax="100">
-        <div class="progress-bar" style="width: 25%">33%</div>
-    </div>
-</div><br><br>
+<!--</div><br><br>-->
 
-<div class="container mt-2">
+<div class="container">
     {%if cart_items%}
+    <h6 class="text-center">Order placing progress</h6>
+    <div class="progress mb-4" role="progressbar" aria-label="Animated striped example" aria-valuenow="35"
+         aria-valuemin="0"
+         aria-valuemax="100">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%"></div>
+    </div>
+    <br>
+
     <div class="d-flex align-items-center justify-content-between">
         <h2>Shopping cart</h2>
         <small class="badge fs-6 rounded-pill bg-primary">{{cart_item_count}}</small>

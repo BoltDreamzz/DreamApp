@@ -1,0 +1,59 @@
+<!-- wishlist.html -->
+{% extends 'partials/base2.html' %}
+{% block title %}Wishlist{% endblock %}
+
+
+{% block content %}
+<h2>Wishlist</h2>
+<div class="row d-flex g-3">
+    {% for item in wishlist_items %}
+    <div class="col-lg-4">
+        <div class="d-flex justify-content-evenly align-items-center">
+            <img class="rounded-circle" width="80" height="80" src="{{item.product.image.url}}" alt=""
+                 style="object-fit: cover;">
+            <div class="flex-column">
+                <h2 class="fw-normal">{{item.product.name}}</h2>
+                <p>{{item.added_at}}</p>
+            </div>
+        </div>
+
+
+        <p><a class="btn btn-secondary" href="#">Add to cart</a></p>
+    </div>
+    {%endfor%}
+</div>
+<ul>
+
+
+    <li>
+        <a href="">Remove</a>
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+    </li>
+    <!--    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>-->
+
+</ul>
+
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--    Launch demo modal-->
+<!--</button>-->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Remove from wishlist</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this product from your wishlist?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>
+                <button type="button" class="btn btn-danger">Yes, delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{
+  "name": "DreamApp",
+  "short_name": "The drip club",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90e2",
+  "icons": [
+    {
+      "src": "/static/home_media/DreamAppFavoicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/home_media/DreamAppFavoicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

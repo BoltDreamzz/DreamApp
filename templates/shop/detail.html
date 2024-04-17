@@ -1,6 +1,6 @@
 {%extends 'partials/base2.html'%}
 
-{%block title%}Explore{%endblock%}
+{%block title%}Detail{%endblock%}
 
 {%block content%}
 <style>
@@ -86,34 +86,47 @@
 
     </div>
     {%endif%}
-    <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
-            class="fi fs-2 fi-br-cart-minus"></i> <span
-            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <div class="d-flex">
+
+        <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
+                class="fi fs-2 fi-br-cart-minus"></i> <span
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
     <span class="visually-hidden">New alerts</span>
   </span>
-    </a>
+        </a>
+
+    </div>
+
     <!--    <i class="bi bi-basket2-fill"></i>-->
 
 </div>
+
+
 <div class="container-fluid mb-4 text-center">
     <img class="shadow-sm rounded-5" src="{{product.image.url}}" width="100%" style="max-width: 500px;" alt="">
 </div>
 <div class="container align-items-center d-flex flex-column mt-2">
-
-    <div class="d-flex justify-content-between flex-column align-items-center">
-        <h3><strong>{{product.name}}</strong></h3>
-        <h1><strong>₦{{product.price}}</strong></h1>
-
-        <!--        What is this symbol ?
-        -->
-
-    </div>
     <div class="d-flex justify-content-center">
         <p><strong>Category:</strong> <span class="badge custom-bg text-info">{{product.category.name}}</span></p>
     </div>
-    <div class="text-center mt-2">
-        <p>{{product.description}}</p><br>
+
+    <div class="d-flex justify-content-between w-100 mb-2 align-items-center">
+        <h3><strong>{{product.name}}</strong></h3>
+        <h1><strong>₦{{product.price}}</strong></h1>
     </div>
+    <p>{{product.description}}</p><br>
+    <!--    </div>-->
+<!--    <div class="mx-2">-->
+<!--        {% if product_in_wishlist %}-->
+
+<!--        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="text-decoration-none"><i-->
+<!--                class="fas fs-2 fa-heart"></i> Added to wishlist</a>-->
+<!--        {% else %}-->
+<!--        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="text-decoration-none"><i-->
+<!--                class="far fs-2 fa-heart"></i> Add to wishlist-->
+<!--        </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
     <div class="container bg-body-tertiary p-5 rounded-5 boyskii px-3">
         <form action="" method="post">
             {%csrf_token%}
@@ -178,19 +191,26 @@
                 {%endfor%}
 
             </div>
-            <!--            <div class="d-flex flex-column ml-3">-->
-            <!--                <h6><strong>Select preferred colors </strong></h6>-->
-
-
-            <!--            </div>-->
 
 
             {%endif%}
 
-            <div class="text-center mt-5">
-                <a href="{% url 'cart:add_to_cart' product.id %}" class="btn btn-dark rounded-pill w-100 btn-lg">Add
-                    to Cart</a>
+            <div class="text-center d-flex justify-content-center align-items-center mt-5">
 
+                <a href="{% url 'cart:add_to_cart' product.id %}" class="btn btn-dark rounded-pill w-100 btn-lg">Add
+                    to Cart
+                </a>
+                <!--                    <i class="far pt-2 fa-heart fs-2"></i>-->
+                {% if product_in_wishlist %}
+
+                <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="text-decoration-none mx-2"><i
+                        class="fas fs-1 fa-heart"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="text-decoration-none mx-2"><i
+                        class="far fs-1 fa-heart"></i>
+                </a>
+                {% endif %}
 
             </div>
 
