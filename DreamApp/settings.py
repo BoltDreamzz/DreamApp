@@ -4,7 +4,7 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 # PWA_SERVICE_WORKER_PATH = 'static/js/serviceworker.js'
 
 # Quick-start development settings - unsuitable for production
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'search',
     'wishlist',
-    'pwa',
+    # 'pwa',
 
 ]
 
@@ -187,32 +187,32 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "boltdreamz@gmail.com"
 EMAIL_HOST_PASSWORD = "uuwxndrtnqurebyr"
 
-PWA_APP_NAME = 'Dreamzz'
-PWA_APP_DESCRIPTION = "The drip club"
-PWA_APP_THEME_COLOR = '#000000'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': 'static/home_media/DreamAppFavoicon.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': 'static/home_media/DreamAppFavoicon.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        'src': 'static/home_media/DreamAppFavoicon.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-    }
-]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
+# PWA_APP_NAME = 'Dreamzz'
+# PWA_APP_DESCRIPTION = "The drip club"
+# PWA_APP_THEME_COLOR = '#000000'
+# PWA_APP_BACKGROUND_COLOR = '#ffffff'
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_SCOPE = '/'
+# PWA_APP_ORIENTATION = 'any'
+# PWA_APP_START_URL = '/'
+# PWA_APP_STATUS_BAR_COLOR = 'default'
+# PWA_APP_ICONS = [
+#     {
+#         'src': 'static/home_media/DreamAppFavoicon.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_ICONS_APPLE = [
+#     {
+#         'src': 'static/home_media/DreamAppFavoicon.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_SPLASH_SCREEN = [
+#     {
+#         'src': 'static/home_media/DreamAppFavoicon.png',
+#         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+#     }
+# ]
+# PWA_APP_DIR = 'ltr'
+# PWA_APP_LANG = 'en-US'
