@@ -1,4 +1,5 @@
 {%extends 'partials/base2.html'%}
+{%load static%}
 
 {%block title%}Detail{%endblock%}
 
@@ -115,18 +116,7 @@
         <h1><strong>₦{{product.price}}</strong></h1>
     </div>
     <p>{{product.description}}</p><br>
-    <!--    </div>-->
-<!--    <div class="mx-2">-->
-<!--        {% if product_in_wishlist %}-->
 
-<!--        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="text-decoration-none"><i-->
-<!--                class="fas fs-2 fa-heart"></i> Added to wishlist</a>-->
-<!--        {% else %}-->
-<!--        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="text-decoration-none"><i-->
-<!--                class="far fs-2 fa-heart"></i> Add to wishlist-->
-<!--        </a>-->
-<!--        {% endif %}-->
-<!--    </div>-->
     <div class="container bg-body-tertiary p-5 rounded-5 boyskii px-3">
         <form action="" method="post">
             {%csrf_token%}
@@ -203,11 +193,12 @@
                 <!--                    <i class="far pt-2 fa-heart fs-2"></i>-->
                 {% if product_in_wishlist %}
 
-                <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="text-decoration-none mx-2"><i
+                <a href="{% url 'wishlist:remove_from_wishlist' product.id %}"
+                   class="text-decoration-none mx-2 removeButton"><i
                         class="fas fs-1 fa-heart"></i>
                 </a>
                 {% else %}
-                <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="text-decoration-none mx-2"><i
+                <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="text-decoration-none mx-2 addButton"><i
                         class="far fs-1 fa-heart"></i>
                 </a>
                 {% endif %}
@@ -218,9 +209,39 @@
 
     </div>
 
+    <!--    TOAST MARKUP-->
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="wishlistToast">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Wishlist</strong>
+            <small>Just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Product added to wishlist!
+        </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="removedFromWishlistToast">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Wishlist</strong>
+            <small>Just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Product removed from wishlist!
+        </div>
+    </div>
+    <!--    TOAST MARKUP END-->
+
+
     <br><br>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script src="{%static 'js/jay.js'%}"></script>
 <script>
     $(document).on("click", "#add-cart", function(e){
         e.preventDefault();

@@ -261,7 +261,7 @@
         <hr class="px-4">
         <li><a href="{%url 'shop:order_page'%}"><i class="bi bi-box-seam-fill"></i> My orders <span
                 class="badge custom-bg text-info">Pending</span></a></li>
-        <li><a href="#"><i class="bi bi-heart-fill"></i> Wishlist</a></li>
+        <li><a href="{%url 'wishlist:wishlist'%}"><i class="bi bi-heart-fill"></i> Wishlist</a></li>
     </ul>
     <ul class="d-flex flex-column mx-3 my-5">
         {%if user.is_authenticated%}

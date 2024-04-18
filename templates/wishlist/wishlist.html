@@ -4,56 +4,75 @@
 
 
 {% block content %}
-<h2>Wishlist</h2>
+<div class="container-fluid d-flex stick sticky-top py-4 shadow-md justify-content-between px-3 mb-2 align-items-center">
+    <!--    <i class="fi fi-sr-angle-small-left"></i>-->
+    <a href="{%url 'shop:explore'%}" class="bi fs-2 fw-bold text-dark bi-chevron-left"></a>
+    <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
+            class="fi fs-2 fi-br-cart-minus"></i> <span
+            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+    <span class="visually-hidden">New alerts</span>
+  </span>
+    </a>
+    <!--    <i class="bi bi-basket2-fill"></i>-->
+
+</div>
+
+{% if wish_count > 0%}
+
+<div class="d-flex px-3 my-2 justify-content-between align-items-center">
+    <h2>My wishlist</h2>
+    <span class="badge bg-dark rounded-pill">{{wish_count}}</span>
+</div>
 <div class="row d-flex g-3">
     {% for item in wishlist_items %}
-    <div class="col-lg-4">
-        <div class="d-flex justify-content-evenly align-items-center">
+    <div class="col-lg-4 bg-body-tertiary rounded-3 shadow-sm mx-auto p-2">
+        <div class="d-flex px-2 justify-content-evenly align-items-center align-items-center">
             <img class="rounded-circle" width="80" height="80" src="{{item.product.image.url}}" alt=""
                  style="object-fit: cover;">
             <div class="flex-column">
-                <h2 class="fw-normal">{{item.product.name}}</h2>
-                <p>{{item.added_at}}</p>
+                <h2 class="fw-normal" style="font-size: 20px;">{{item.product.name}}</h2>
+                <p style="font-size: 13px;" class="text-muted">{{item.added_at}}</p>
+            </div>
+            <div class="d-flex flex-column">
+                <a href="" class="btn btn-sm mb-2 btn-dark disabled">Add cart</a>
+                <a href="#" class="btn btn-sm btn-danger disabled" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal">Delete</a>
+
             </div>
         </div>
 
 
-        <p><a class="btn btn-secondary" href="#">Add to cart</a></p>
+        <!--        <p><a class="btn btn-secondary" href="#">Add to cart</a></p>-->
     </div>
     {%endfor%}
 </div>
-<ul>
+
+{% else%}
+<h1 class="text-center mt-3">
+    You havent added any products yet.
+</h1>
+{% endif%}
 
 
-    <li>
-        <a href="">Remove</a>
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
-    </li>
-    <!--    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>-->
 
-</ul>
 
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
-<!--    Launch demo modal-->
-<!--</button>-->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Remove from wishlist</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this product from your wishlist?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>
-                <button type="button" class="btn btn-danger">Yes, delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h1 class="modal-title fs-5" id="exampleModalLabel">Remove from wishlist</h1>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                Are you sure you want to delete this product from your wishlist?-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <a href="" class="btn btn-dark" data-bs-dismiss="modal">No, cancel</a>-->
+<!--                <a href="" class="btn btn-danger">Yes delete</a>-->
+<!--&lt;!&ndash;                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancel</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="button" class="btn btn-danger">Yes, delete</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 {% endblock %}
