@@ -11,11 +11,11 @@ def splash(request):
 
 def index(request):
     categories = Category.objects.all()
-    products = Product.objects.all()
+    products = Product.objects.all()[:5]
     kiddiesCat = Category.objects.get(name="Kiddies")
     BarbiesCat = Category.objects.get(name="Women")
-    kiddiesPro = kiddiesCat.product_set.all()
-    BarbiesPro = BarbiesCat.product_set.all()
+    kiddiesPro = kiddiesCat.product_set.all()[:4]
+    BarbiesPro = BarbiesCat.product_set.all()[:4]
 
     products_by_category = {}
     for category in categories:
@@ -56,16 +56,6 @@ def detail(request, pk):
         "product_in_wishlist": product_in_wishlist,
     })
 
-
-# @login_required
-# def detail(request, pk):
-#     product = get_object_or_404(Product, pk=pk, is_sold=False)
-#     related_items = Product.objects.filter(category=product.category, is_sold=False).exclude(pk=pk)
-#
-#     return render(request, "shop/detail.html", {
-#         "related_items": related_items,
-#         "product": product,
-#     })
 
 
 @login_required

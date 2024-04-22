@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="icon" type="icon/png" href="{% static 'home_media/DreamAppFavoicon.png' %}" style="width: 42px;">
-<!--    <link rel="manifest" home_mediaref="{% static 'manifest.json' %}">-->
+    <!--    <link rel="manifest" home_mediaref="{% static 'manifest.json' %}">-->
 
 
 </head>
@@ -277,7 +277,7 @@
         <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i> Sign
             off</a>
         {%else%}
-        <a href="{%url 'userauths:login'%}" class="btn btn-outline-dark text-bg-dark">Login / Register</a>
+        <a href="{%url 'shop:splash'%}" class="btn btn-outline-dark text-bg-dark">Login / Register</a>
         {%endif%}
 
     </ul>
@@ -319,9 +319,31 @@
 <div class="container">
     {%block content%}{%endblock%}
 </div>
-<script>
 
-</script>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <img src="{%static 'home_media/DreamAppFavoicon.png'%}" width="30" alt="">
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+        </div>
+
+        <ul class="nav col-md-4 text- justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="#">
+                <i class="bi bi-github"></i>
+            </a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#">
+                <i class="bi bi-twitter-x"></i>
+            </a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#">
+                <i class="bi bi-instagram"></i>
+            </a></li>
+        </ul>
+    </footer>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

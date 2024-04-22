@@ -7,6 +7,9 @@
     .scrollable-row::-webkit-scrollbar {
         display: none;
     }
+    hr {
+        border-bottom: 2px solid black rgba(0,0,0,0.8);
+    }
     .advert-container {
             width: 100%;
             max-width: 800px; /* Adjust maximum width as needed */
@@ -112,10 +115,10 @@
 </div>
 {%else%}
 <div class="lead my-3 d-flex flex-column">
-    <h1 class="fw-bold">Hello User!</h1>
+    <h1 class="fw-bold">Hello Dearie</h1>
     <h6 style="font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
 
-    <a href="{%url 'userauths:login'%}" class="btn btn-lg btn-dark">Login / Register</a>
+    <a href="{%url 'shop:splash'%}" class="btn btn-lg btn-dark">Login / Register</a>
 
 </div>
 {%endif%}
@@ -132,6 +135,7 @@
                aria-label="Search">
     </form>
     <a href="#" class="btn rounded-3 bg-body-tertiary"><i class="bi bi-filter"></i></a>
+    <hr>
 </div>
 <!--CATEGORY-->
 <div class="container mt-3 d-flex justify-content-between align-items-center">
@@ -214,35 +218,20 @@
 </div>
 
 <div class="container mt-2 d-flex justify-content-between align-items-center">
-    <h5 class="mt-2">Ladies</h5>
-    <a href="{%url 'shop:explore'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>
+    <h5 class="mt-2">Reviews</h5>
+    <!--    <a href="{%url 'shop:explore'%}" class="text-decoration-none">see all <i class="bi fs-6 bi-chevron-right"></i></a>-->
 </div>
-<div class="scrollable-row">
-    {%for bpro in BarbiesPro%}
-    <div class="scrollable-item rounded-4 shadow-sm">
-        <a href="{%url 'shop:detail' bpro.id%}" class="text-decoration-none text-dark">
-            <img src="{{bpro.image.url}}" alt="{{ bpro.name }}">
-
-            <div class="d-flex text-center mt-2 flex-column justify-content-between">
-
-                <h6>{{bpro.name}}</h6>
-                {%if bpro.discount%}
-                <div class="d-flex mt-2 px-2 flex justify-content-between">
-                    <h5><strong>₦ {{bpro.price}}</strong></h5>
-                    <p><span class="badge bg-dark text-white">{{bpro.discount}}% off</span></p>
-
-                </div>
-                {%else%}
-                <div class="d-flex mt-2 px-2 flex justify-content-center">
-                    <h5><strong>₦ {{bpro.price}}</strong></h5>
-
-                </div>
-
-                {%endif%}
-
+<div class="row d-flex">
+        <div class="col-lg-3 m-2 text-center text-bg-info p-3 rounded-3 shadow-sm text-white">
+            <div class="text-center">
+                <img style="object-fit: cover;" width="80" class="rounded-circle"
+                     src="https://i.pinimg.com/564x/d4/2d/9c/d42d9c6ff7455237b43289c8f3ab6b25.jpg" alt="">
             </div>
-        </a>
-    </div>
-    {%endfor%}
+
+            <h4 class="fw-normal"><strong>Vince13</strong></h4>
+            <p style="font-size: 14px;" class="card-description">We love to drip on <span class="text-warning">Dreamzz</span></p>
+            <a href="#" class="btn btn-sm bg-body-secondary text-info">view details</a>
+        </div>
+
 </div>
 {%endblock content%}

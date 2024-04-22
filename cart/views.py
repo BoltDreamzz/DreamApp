@@ -68,6 +68,49 @@ def remove_from_cart(request, product_id):
 
 # Create your views here.
 @login_required
+def placeOrder(request):
+    try:
+        if request.method == 'POST':
+            form = OrderForm(request.POST)
+            if form.is_valid():
+                cart = get_object_or_404(Cart, user=request.user)
+
+                order = Order.objects.create(
+                    user=request.user,
+                    status='Pending',
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name'],
+                    phone_number=form.cleaned_data['phone_number'],
+                    shipping_address=form.cleaned_data['shipping_address']
+                )
+
+                for cart_item in cart.cartitem_set.all():
+                    OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
+                cart.cartitem_set.all().delete()
+
+                messages.success(request, "Congratulations, your order has been placed!")
+                user_email = request.user.email
+
+                # Prepare email content
+                subject = 'Order Confirmation'
+                html_message = render_to_string('shop/order_success.html', {'order': order})
+                plain_message = strip_tags(html_message)
+                from_email = settings.EMAIL_HOST_USER
+                to_email = [user_email]
+
+                send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
+
+                return redirect('shop:order_success')
+    except Exception as e:
+        # Handle the error here
+        error_message = str(e)
+        return render(request, "shop/order_success.html", {'error_message': error_message})
+
+    else:
+        form = OrderForm()
+
+    return render(request, "cart/checkout.html", {'form': form})
+
 # def placeOrder(request):
 #     if request.method == 'POST':
 #         form = OrderForm(request.POST)
@@ -79,7 +122,6 @@ def remove_from_cart(request, product_id):
 #                 status='Pending',
 #                 first_name=form.cleaned_data['first_name'],
 #                 last_name=form.cleaned_data['last_name'],
-#
 #                 phone_number=form.cleaned_data['phone_number'],
 #                 shipping_address=form.cleaned_data['shipping_address']
 #             )
@@ -87,46 +129,21 @@ def remove_from_cart(request, product_id):
 #             for cart_item in cart.cartitem_set.all():
 #                 OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
 #             cart.cartitem_set.all().delete()
-#             order.save(commit=False)
+#
 #             messages.success(request, "Congratulations, your order has been placed!")
-#             return redirect('cart:order_success')
+#             user_email = request.user.email
+#
+#             # Prepare email content
+#             subject = 'Order Confirmation'
+#             html_message = render_to_string('shop/order_success.html', {'order': order})
+#             plain_message = strip_tags(html_message)
+#             from_email = settings.EMAIL_HOST_USER
+#             to_email = [user_email]
+#
+#             send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
+#
+#             return redirect('shop:order_success')
 #     else:
 #         form = OrderForm()
 #
 #     return render(request, "cart/checkout.html", {'form': form})
-def placeOrder(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            cart = get_object_or_404(Cart, user=request.user)
-
-            order = Order.objects.create(
-                user=request.user,
-                status='Pending',
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                phone_number=form.cleaned_data['phone_number'],
-                shipping_address=form.cleaned_data['shipping_address']
-            )
-
-            for cart_item in cart.cartitem_set.all():
-                OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
-            cart.cartitem_set.all().delete()
-
-            messages.success(request, "Congratulations, your order has been placed!")
-            user_email = request.user.email
-
-            # Prepare email content
-            subject = 'Order Confirmation'
-            html_message = render_to_string('shop/order_success.html', {'order': order})
-            plain_message = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            to_email = [user_email]
-
-            send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
-
-            return redirect('shop:order_success')
-    else:
-        form = OrderForm()
-
-    return render(request, "cart/checkout.html", {'form': form})

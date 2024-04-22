@@ -10,19 +10,29 @@
     .bbgg {
         display: none;
     }
+    body {
+        background: #0A0A0A;
+    }
 </style>
 
 <div class="container my-5" style="padding-top: 22vh;">
-<!--    <h1 class="display-1">Hello</h1>-->
-    <div class="text-center mt-5">
-        <img width="300" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">
+    <!--    <h1 class="display-1">Hello</h1>-->
+    <div class="text-center mt-2">
+        <img width="250" src="{% static 'home_media/DreamAppFavoicon.png' %}" alt="">
     </div>
     <div class="text-center mt-5">
-        <a href="{%url 'userauths:login'%}" class="btn w-50 btn-lg shadow-md btn-dark rounded-pill">Login/Signup</a>
+        <a href="{%url 'userauths:login'%}"
+           class="btn w-75 btn-lg my-2 shadow-md btn-outline-light rounded-pill">Login</a>
+        <a href="{%url 'userauths:register'%}"
+           class="btn w-75 btn-lg my-2 shadow-md btn-light rounded-pill">Register</a>
+        <a href="{%url 'shop:index'%}"
+           class="btn text-decoration-none w-75 btn-lg my-2 shadow-md btn-link text-info">Browse as a guest</a>
+
+
     </div>
     <div class="text-center mt-5">
-        <h6 class="text-muted"><strong>Dreamzz.co</strong></h6>
-<!--        <img width="300" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">-->
+        <h6 class="text-white"><strong>Version 12.0.1</strong></h6>
+        <!--        <img width="300" src="{% static 'home_media/Dreamzz.co official Merch logo black.png' %}" alt="">-->
     </div>
 </div>
 

@@ -119,4 +119,4 @@ def signup_view(request):
 def logout(request):
     v_logout(request)
     messages.warning(request, "Logged out.")
-    return redirect("shop:index")
+    return redirect("shop:splash")
