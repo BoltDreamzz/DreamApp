@@ -57,7 +57,6 @@ def detail(request, pk):
     })
 
 
-
 @login_required
 def category_page(request):
     categories = Category.objects.all()
@@ -113,3 +112,7 @@ def order_success(request):
     return render(request, "shop/order_success.html", {
         # "order": order,
     })
+
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)

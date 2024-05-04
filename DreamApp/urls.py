@@ -4,6 +4,12 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from django.urls import path
+from django.views.decorators.cache import cache_page
+from django.conf import settings
+from django.conf.urls.static import static
+from pwa import views as pwa_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("shop.urls")),

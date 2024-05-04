@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -17,7 +18,7 @@ SECRET_KEY = 'django-insecure-&x$i$r6v&jexlck+f#7n)hgqrmbv+3yk(^(%#pp@m#ui0amx4d
 #
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'True'
+DEBUG = False
 
 ALLOWED_HOSTS = ["dreamapp-hbpq.onrender.com", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["https://dreamapp-hbpq.onrender.com"]
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'shop.middleware.Custom404Middleware',
 ]
 
 ROOT_URLCONF = 'DreamApp.urls'
@@ -84,28 +86,27 @@ WSGI_APPLICATION = 'DreamApp.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'DATABASE_URL': 'postgresql://postgres:effE-B1G-a4GD14DAFcgbd1A-g222D5G@postgres.railway.internal:5432/railway',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'effE-B1G-a4GD14DAFcgbd1A-g222D5G',
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': 13768,
-#     }
-# }
-#
-# DATABASE_URL = config("DATABASE_URL", default="")
-# DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'DATABASE_URL': 'postgres://dreamapp_database_user:y5D5Zuy5qq9RJh8AVuoE9cfMWxOG4knb@dpg-cor55bi0si5c739c5b3g-a/dreamapp_database',
+        'NAME': 'railway',
+        'USER': 'dreamapp_database_user',
+        'PASSWORD': 'y5D5Zuy5qq9RJh8AVuoE9cfMWxOG4knb',
+        'HOST': 'dpg-cor55bi0si5c739c5b3g-a',
+        'PORT': 5432,
     }
 }
+
+DATABASE_URL = config("DATABASE_URL", default="")
+DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -216,3 +217,25 @@ EMAIL_HOST_PASSWORD = "uuwxndrtnqurebyr"
 # ]
 # PWA_APP_DIR = 'ltr'
 # PWA_APP_LANG = 'en-US'
+
+# python
+PWA_APP_NAME = "DreamApp"
+PWA_APP_DESCRIPTION = "The Drip Club"
+PWA_APP_THEME_COLOR = "#007bff"
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/home_media/DreamAppFavoicon.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/home_media/DreamAppFavoicon.png',
+        'sizes': '160x160'
+    }
+]

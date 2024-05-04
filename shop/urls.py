@@ -1,11 +1,16 @@
 from django.urls import path
 from . import views
+from django.urls import path
+
+# from your_app.views import custom_404
 
 app_name = "shop"
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('explore/', views.explore, name='explore'),
+    # path('contact/', views.contact_page, name='contact'),
+
     path('splash/', views.splash, name='splash'),
     path('orders/', views.order_page, name='order_page'),
     path('order-success/', views.order_success, name='order_success'),

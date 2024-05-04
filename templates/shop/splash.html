@@ -13,9 +13,14 @@
     body {
         background: #0A0A0A;
     }
+    @media screen and (min-width: 700px) {
+            .splash {
+                padding-top: 2rem;
+            }
+        }
 </style>
 
-<div class="container my-5" style="padding-top: 22vh;">
+<div class="container splash my-5" style="max-height: 100%;">
     <!--    <h1 class="display-1">Hello</h1>-->
     <div class="text-center mt-2">
         <img width="250" src="{% static 'home_media/DreamAppFavoicon.png' %}" alt="">
