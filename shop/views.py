@@ -36,9 +36,11 @@ def index(request):
 def explore(request):
     categories = Category.objects.all()
     products = Product.objects.all()
+    pro_count = products.count()
     return render(request, "shop/explore.html", {
         "categories": categories,
         "products": products,
+        "pro_count": pro_count,
     })
 
 
@@ -116,3 +118,5 @@ def order_success(request):
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+def contact_page(request):
+    return render(request, "shop/contact-us-page.html")

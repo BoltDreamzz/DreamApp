@@ -27,6 +27,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="icon/png" href="{% static 'home_media/DreamAppFavoicon.png' %}" style="width: 42px;">
     <!--    <link rel="manifest" home_mediaref="{% static 'manifest.json' %}">-->
 
@@ -225,24 +226,33 @@
     <!--    <div class="navbar-toggle">-->
     <button class="hamburger d-flex align-items-center navbar-toggle" id="hamburger-btn">
 
-        <i class="fi fs-1 fi-br-bars-staggered"></i>
+        <!--        <i class="fi fs-1 fi-br-bars-staggered"></i>-->
+        <!--        <i class="bi display-1 bi-list"></i>-->
+        <!--        <i class="bi bi-list-ul"></i>-->
+        <i class="fa-solid fs-1 fa-list"></i>
     </button>
     <!--    </div>-->
     <div class="navbar-brand ml-2">
         <a href="/" class="navbar-logo text-decoration-none"
-           style="font-family: 'Eczar', serif; font-weight: 600; font-size: 30px;">Dreamzz</a>
+           style="  font-family: 'UnifrakturCook', cursive; font-weight: 600; font-size: 30px;">The Drip Club</a>
     </div>
+    {%if request.user.is_authenticated%}
     <div class="notification">
         <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i
                 class="fi fs-1 fi-br-cart-minus"></i> <span
                 class="position-absolute top-1 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-    <span class="visually-hidden">New alerts</span>
-  </span>
+            <span class="visually-hidden">New alerts</span></span>
         </a>
-        <!--        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">-->
-        <!--            <span class="badge fs-6 bg-body-tertiary text-danger">2</span> <i class="fi fs-1 fi-br-envelope-dot"></i>-->
-        <!--        </a>-->
     </div>
+    {%else%}
+    <a href="{%url 'userauths:login'%}" class="btn btn-md btn-dark">Login</a>
+    <!--    <div class="notification">-->
+    <!--        <a href="{%url 'cart:shopping_cart'%}" class="text-decoration-none position-relative text-dark"><i-->
+    <!--                class="fi fs-1 fi-br-cart-minus"></i>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    {%endif%}
+
 </div>
 <div id="sidebar" class="sidebar overflow-x d-flex flex-column justify-content-between">
 
@@ -256,28 +266,32 @@
             </div>
         </li>
         <li><a href="/" class="{% if request.path == '/' %}text-primary fs-4{% endif %}">Home</a></li>
-        <li><a href="{% url 'shop:explore' %}" class="{% if request.path == '/explore/' %}text-primary fs-4{% endif %}">Products
+        <li><a href="{% url 'shop:explore' %}"
+               class="{% if request.path == '/explore/' %}text-primary fs-4{% endif %}">Products
             <span class="badge custom-bg text-success">New</span></a></li>
         <li><a href="{% url 'shop:categories' %}"
                class="{% if request.path == '/categories/' %}text-primary fs-4{% endif %}">Categories</a></li>
-        <li><a href="#" class="{% if request.path == '/contact/' %}text-primary fs-4{% endif %}">Contact</a></li>
+        <li><a href="{% url 'shop:contact' %}" class="{% if request.path == '/contact/' %}text-primary fs-4{% endif %}">Contact</a>
+        </li>
         <hr class="px-4">
         <li><a href="{%url 'shop:order_page'%}"><i class="bi bi-box-seam-fill"></i> My orders <span
                 class="badge custom-bg text-info">Pending</span></a></li>
-        <li><a href="{%url 'wishlist:wishlist'%}"><i class="bi bi-heart-fill"></i> Wishlist</a></li>
+        <li><a href="{%url 'wishlist:wishlist'%}"><i class="bi bi-heart-fill"></i> Wishlist </a></li>
     </ul>
     <ul class="d-flex flex-column mx-3 my-5">
         {%if user.is_authenticated%}
 
         <li>
-            <a href="#" class="d-flex align-items-center justify-content-between px-4 text-dark text-decoration-none">
+            <a href="#"
+               class="d-flex align-items-center justify-content-between px-4 text-dark text-decoration-none">
                 <img width="30" src="{% static 'home_media/user.png' %}" alt="">
 
                 <strong> {{user.username}}</strong>
             </a>
         </li>
 
-        <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i> Sign
+        <a href="{%url 'userauths:logout'%}" class="btn btn-dark text-bg-dark"><i class="bi bi-box-arrow-left"></i>
+            Sign
             off</a>
         {%else%}
         <a href="{%url 'shop:splash'%}" class="btn btn-outline-dark text-bg-dark">Login / Register</a>
@@ -324,28 +338,48 @@
 </div>
 
 
-<div class="container footer d-none">
-    <footer class="d-flex sticky-bottom flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-                <img src="{%static 'home_media/DreamAppFavoicon.png'%}" width="30" alt="">
-            </a>
-            <span class="mb-3 mb-md-0 text-body-secondary">© The Drip Club co</span>
-        </div>
-
-        <ul class="nav col-md-4 text- justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-body-secondary" href="#">
-                <i class="bi bi-github"></i>
-            </a></li>
-            <li class="ms-3"><a class="text-body-secondary" href="#">
-                <i class="bi bi-twitter-x"></i>
-            </a></li>
-            <li class="ms-3"><a class="text-body-secondary" href="#">
-                <i class="bi bi-instagram"></i>
-            </a></li>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Men</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Women</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Kiddies</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Caps</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Others</a></li>
         </ul>
+        <div class="my-1 d-flex gap-3 justify-content-center">
+            <i class="bi bi-bank"></i>
+
+            <i class="bi bi-currency-bitcoin"></i>
+            <i class="bi bi-paypal"></i>
+        </div>
+        <p class="text-center text-body-secondary"><strong class="">Dreamzz co 2024, Inc</strong></p>
+                <p class="text-center text-muted">Version 3.0.0</p>
+
     </footer>
 </div>
+<!--<div class="container footer d-none">-->
+<!--    <footer class="d-flex sticky-bottom flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
+<!--        <div class="col-md-4 d-flex align-items-center">-->
+<!--            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">-->
+<!--                <img src="{%static 'home_media/DreamAppFavoicon.png'%}" width="30" alt="">-->
+<!--            </a>-->
+<!--            <span class="mb-3 mb-md-0 text-body-secondary">© The Drip Club co</span>-->
+<!--        </div>-->
+
+<!--        <ul class="nav col-md-4 text- justify-content-end list-unstyled d-flex">-->
+<!--            <li class="ms-3"><a class="text-body-secondary" href="#">-->
+<!--                <i class="bi bi-github"></i>-->
+<!--            </a></li>-->
+<!--            <li class="ms-3"><a class="text-body-secondary" href="#">-->
+<!--                <i class="bi bi-twitter-x"></i>-->
+<!--            </a></li>-->
+<!--            <li class="ms-3"><a class="text-body-secondary" href="#">-->
+<!--                <i class="bi bi-instagram"></i>-->
+<!--            </a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+<!--</div>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

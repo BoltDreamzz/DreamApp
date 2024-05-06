@@ -9,7 +9,7 @@ app_name = "shop"
 urlpatterns = [
     path('', views.index, name='index'),
     path('explore/', views.explore, name='explore'),
-    # path('contact/', views.contact_page, name='contact'),
+    path('contact/', views.contact_page, name='contact'),
 
     path('splash/', views.splash, name='splash'),
     path('orders/', views.order_page, name='order_page'),

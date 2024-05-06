@@ -1,4 +1,5 @@
 {%extends 'partials/base.html'%}
+{%load static%}
 
 {%block title%}Explore{%endblock%}
 
@@ -51,7 +52,7 @@
     }
   }
 </style>
-<h4>Explore <small><span class="badge custom-bg text-info">New</span></small></h4>
+<h4>All products <small><span class="badge custom-bg text-info">{{pro_count}}</span></small></h4>
 <div class="container flex-wrap px-2 d-flex justify-content-between">
     {%for pro in products%}
     <div class="product-card">
@@ -86,7 +87,7 @@
         <a href="#" class="text-decoration-none text-dark">
 
             <div class="product-image">
-                <img src="https://via.placeholder.com/300x300" alt="Product Image">
+                <img src="{%static 'home_media/co.jpg'%}" alt="Product Image">
             </div>
             <div class="product-info text-center">
                 <!--                <span class="badge custom-bg mb-2 text-success">Category</span>-->

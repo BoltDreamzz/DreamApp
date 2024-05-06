@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-&x$i$r6v&jexlck+f#7n)hgqrmbv+3yk(^(%#pp@m#ui0amx4d
 #
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["dreamapp-hbpq.onrender.com", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["https://dreamapp-hbpq.onrender.com"]
@@ -88,25 +88,16 @@ WSGI_APPLICATION = 'DreamApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL': 'postgres://dreamapp_database_user:y5D5Zuy5qq9RJh8AVuoE9cfMWxOG4knb@dpg-cor55bi0si5c739c5b3g-a/dreamapp_database',
-        'NAME': 'railway',
-        'USER': 'dreamapp_database_user',
-        'PASSWORD': 'y5D5Zuy5qq9RJh8AVuoE9cfMWxOG4knb',
-        'HOST': 'dpg-cor55bi0si5c739c5b3g-a',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-DATABASE_URL = config("DATABASE_URL", default="")
-DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+# DATABASE_URL = config("DATABASE_URL", default="")
+# database_url = os.environ.get("DATABASE_URL")
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# DATABASES["default"] = dj_database_url.parse("postgres://dreamapp_database_user:y5D5Zuy5qq9RJh8AVuoE9cfMWxOG4knb@dpg-cor55bi0si5c739c5b3g-a/dreamapp_database")
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

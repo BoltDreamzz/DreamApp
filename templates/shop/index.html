@@ -104,6 +104,12 @@
                 margin-right: 10px;
             }
         }
+        @media screen and (min-width: 770px) {
+            .b-good {
+                width: 40rem;
+            }
+        }
+
     .custom-bg {
             background-color: #f0f0f0; /* Change to the desired background color */
         }
@@ -115,17 +121,20 @@
 </div>
 {%else%}
 <div class="lead my-3 d-flex flex-column">
-    <h1 class="fw-bold">Hello Dearie</h1>
+    <h1 class="fw-bold">Hello Chief</h1>
     <h6 style="font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
 
-    <a href="{%url 'shop:splash'%}" class="btn btn-lg btn-dark">Login / Register</a>
+    <div class="d-flex gap-3 mt-2">
+        <a href="{%url 'shop:splash'%}" class="btn b-good btn-lg btn-dark">Register <i class="bi fs-6 bi-chevron-right"></i></a>
+        <a href="#" class="btn btn-lg btn-outline-dark"><i class="bi fs-4 bi-stars"></i></a>
+    </div>
 
 </div>
 {%endif%}
 
 
 <div class="advert-container mt-2">
-    <img class="advert-image" src="{%static 'home_media/Merch 63.jpg'%}" alt="Advertisement Image">
+    <img class="advert-image" src="{%static 'home_media/Merch 50.jpg'%}" alt="Advertisement Image">
 </div>
 
 <!--SEARCH-->
