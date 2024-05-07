@@ -1,16 +1,52 @@
 {%extends 'partials/base2.html'%}
+{%load static%}
 
 {%block title%}Order success{%endblock%}
 
 {%block content%}
-<div class="container mt-3 text-center">
+<style>
+    @media screen and (max-width: 600px) {
+            .pil {
+                padding-top: 8rem;
+            }
+        }
+</style>
 
-    <h1>Hmmmm....something went wrong, <br>
+<div class="container pil text-center">
+    <img class="mb-2 rounded-5" width="120" src="{%static 'home_media/thank-you.gif'%}" alt="">
+
+    <h1 class="mb-3">Proceed to making payments, <br>
         please contact <span class="text-primary">Dreamzz co</span>
     </h1>
-    <a href="/" class="btn btn-body-tertiary">Go home</a>
+    <div class="d-flex align-items-center gap-3 justify-content-center">
+        <a href="https://wa.me/+2348111440535/" class="text-dark m-2 bg-body-primary rounded-3 border p-3"><i
+                class="bi bi-whatsapp"></i></a>
+        <a href="https://www.instagram.com/dreamzz.co" class="text-dark m-2 bg-body-primary rounded-3 border p-3"><i
+                class="bi bi-instagram"></i></a>
+        <a href="https://web.facebook.com/bolt.dreamzz/" class="text-dark m-2 bg-body-primary rounded-3 border p-3"><i class="bi bi-facebook"></i></a>
+    </div>
+    <a href="/" class="btn mt-3 btn-link text-dark">Go home <i class="bi fs-5 mx-1 bi-box-arrow-right"></i></a>
 
+
+</div><br>
+<hr>
+<div class="d-flex justify-content-center p-2 m-3 gap-3">
+    <img class="" width="100" src="{%static 'home_media/DreamAppFavoicon.png'%}" alt="">
+
+    <img class="mb-2" width="100" src="{%static 'home_media/QR.png'%}" alt="">
 
 </div>
-
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6 offset-md-1 mb-3">
+        <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+        </form>
+    </div>
+</div>
 {%endblock%}
