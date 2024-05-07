@@ -104,6 +104,7 @@ def placeOrder(request):
     except Exception as e:
         # Handle the error here
         error_message = str(e)
+        messages.info(request, "This order will be completed after 'Successful Payments'")
         return render(request, "shop/order_success.html", {'error_message': error_message})
 
     else:
