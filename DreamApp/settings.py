@@ -152,8 +152,6 @@ JAZZMIN_SETTINGS = {
     "site_title": "Dreanzz",
 
     # Title on the brand, and the login screen (19 chars max)
-    "site_header": "Dreamzz",
-
     # Welcome text on the login screen
     "welcome_sign": "Welcome to Dreamzz Admin",
 
@@ -164,7 +162,7 @@ JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on admin pages
     "show_ui_builder": True,
 
-    "site_logo": "static/shop_media/DreamAppFavoicon.png"
+    "site_logo": "static/home_media/DreamAppFavoicon.png"
 
     # Whether to cache the menu tree
 }

@@ -57,8 +57,43 @@
         padding: 10px 25px;
         color: black;
     }
+    	.stacked-card {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    transition: transform 0.5s ease;
+  }
+  .stacked-card-element {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+  }
+  .stacked-card-back {
+    background-color: #ccc;
+    transform: translateY(-20px) rotate(2deg) scale(0.9);
+  }
+  .stacked-card-middle {
+    background-color: #eee;
+    transform: translateY(-10px) rotate(1deg) scale(0.95);
+  }
+  .stacked-card-front {
+    z-index: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover animation */
+  .stacked-card:hover .stacked-card-element {
+    transform: translateY(-10px) scale(0.95);
+  }
+    .bi {
+        font-weight: 600;
+    }
 </style>
-<div class="container-fluid stick d-flex sticky-top py-2 shadow-md justify-content-between px-3 mb-2 align-items-center"
+<div class="container-fluid stick d-flex sticky-top py-2 shadow-md justify-content-between px-2 mb-2 align-items-center"
      style="background: #fbfcfd;">
     <!--    <i class="fi fi-sr-angle-small-left"></i>-->
     <a href="{%url 'shop:explore'%}" class="bi fs-2 fw-bold text-dark bi-chevron-left"></a>
@@ -108,7 +143,7 @@
 </div>
 <div class="container align-items-center d-flex flex-column mt-2">
     <div class="d-flex justify-content-center">
-        <p><strong>Category:</strong> <span class="badge custom-bg text-info">{{product.category.name}}</span></p>
+        <p><strong>Category:</strong> <span class="badge custom-bg text-dark">{{product.category.name}}</span></p>
     </div>
 
     <div class="d-flex justify-content-between w-100 mb-2 align-items-center">
@@ -116,6 +151,29 @@
         <h1><strong>₦{{product.price}}</strong></h1>
     </div>
     <p>{{product.description}}</p><br>
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex gap-2">
+            <div class="d-flex gap-2 text-primary">
+                <i class="bi bi-heart"></i>
+                <p>3</p>
+
+            </div>
+            <div class="d-flex gap-2 text-success">
+                <i class="bi bi-chat-dots"></i>
+                <p>3</p>
+
+            </div>
+            <div class="d-flex gap-2 text-warning">
+                <i class="bi bi-star"></i>
+                <p>3</p>
+
+            </div>
+        </div>
+        <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-dark-subtle border border-dark-subtle rounded-pill">
+            <img class="rounded-circle me-1" width="24" height="24" src="https://github.com/mdo.png" alt="">Customize
+        </span>
+
+    </div>
 
     <div class="container bg-body-tertiary p-5 rounded-5 boyskii px-3">
         <form action="" method="post">

@@ -58,7 +58,6 @@
             width: 200px; /* Set the width of each item as needed */
             height: 300px; /* Set the height of each item as needed */
             border: 1px solid #ccc;
-            border-radius: 5px;
             display: inline-block;
             vertical-align: top;
             overflow: hidden;
@@ -118,15 +117,19 @@
 <div class="lead my-3">
     <h1 class="fw-bold">Hello {{user.username}}!</h1>
     <h6 style="  font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
+    <div class="d-flex gap-3 mt-4">
+        <a href="{%url 'shop:explore'%}" class="btn btn-lg btn-outline-dark">Customize <i class="bi fs-4 bi-stars text-info"></i></a>
+    </div>
 </div>
 {%else%}
 <div class="lead my-3 d-flex flex-column">
-    <h1 class="fw-bold">Hello Chief</h1>
+    <h1 class="fw-bold">Hello !</h1>
     <h6 style="font-family: 'Pacifico', cursive;">Explore cutting edge fashion...</h6>
 
     <div class="d-flex gap-3 mt-2">
-        <a href="{%url 'shop:splash'%}" class="btn b-good btn-lg btn-dark">Register <i class="bi fs-6 bi-chevron-right"></i></a>
-        <a href="#" class="btn btn-lg btn-outline-dark"><i class="bi fs-4 bi-stars"></i></a>
+        <a href="{%url 'shop:explore'%}" class="btn b-good btn-lg btn-dark">Explore <i
+                class="bi fs-6 bi-chevron-right"></i></a>
+        <a href="{%url 'shop:explore'%}" class="btn btn-lg btn-outline-dark"><i class="bi fs-4 bi-stars"></i></a>
     </div>
 
 </div>
@@ -143,7 +146,7 @@
         <input name="query" value="{{query}}" type="search" class="form-control rounded-5" placeholder="'Kiddies'"
                aria-label="Search">
     </form>
-    <a href="#" class="btn rounded-3 bg-body-tertiary"><i class="bi bi-filter"></i></a>
+    <a href="#" class="btn rounded-3 custom-bg"><i class="bi fs-3 bi-filter"></i></a>
     <hr>
 </div>
 <!--CATEGORY-->
@@ -166,7 +169,7 @@
 </div>
 <div class="scrollable-row">
     {%for pro in products%}
-    <div class="scrollable-item rounded-4 shadow-sm">
+    <div class="scrollable-item shadow-sm">
         <a href="{%url 'shop:detail' pro.id%}" class="text-decoration-none text-dark">
             <img src="{{pro.image.url}}" alt="{{ pro.name }}">
 
@@ -199,7 +202,7 @@
 </div>
 <div class="scrollable-row">
     {%for kpro in kiddiesPro%}
-    <div class="scrollable-item rounded-4 shadow-sm">
+    <div class="scrollable-item shadow-sm">
         <a href="{%url 'shop:detail' kpro.id%}" class="text-decoration-none text-dark">
             <img src="{{kpro.image.url}}" alt="{{ kpro.name }}">
 

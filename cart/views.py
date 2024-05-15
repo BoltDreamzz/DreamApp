@@ -86,7 +86,7 @@ def placeOrder(request):
 
                 for cart_item in cart.cartitem_set.all():
                     OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity)
-                cart.cartitem_set.all().delete()
+                    cart.cartitem_set.all().delete()
 
                 messages.success(request, "Congratulations, your order has been placed!")
                 user_email = request.user.email

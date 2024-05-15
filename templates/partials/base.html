@@ -29,6 +29,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="icon/png" href="{% static 'home_media/DreamAppFavoicon.png' %}" style="width: 42px;">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous"/>
+
+
     <!--    <link rel="manifest" home_mediaref="{% static 'manifest.json' %}">-->
 
 
@@ -215,7 +222,14 @@
     .zboy {
         z-index: 4;
     }
-
+.message-icon {
+            position: fixed;
+            bottom: 100px;
+            right: 40px;
+            z-index: 10000; /* Ensure it's above other content */
+            shadow: 2px black rgba(0,0,0,0.6);
+            /* Add any additional styling you need */
+        }
 </style>
 <body>
 <!--NAVBAR-->
@@ -229,7 +243,7 @@
         <!--        <i class="fi fs-1 fi-br-bars-staggered"></i>-->
         <!--        <i class="bi display-1 bi-list"></i>-->
         <!--        <i class="bi bi-list-ul"></i>-->
-        <i class="fa-solid text=-dark fs-1 fa-list"></i>
+        <i class="fa-solid text-dark fs-1 fa-list"></i>
     </button>
     <!--    </div>-->
     <div class="navbar-brand ml-2">
@@ -333,7 +347,16 @@
       document.getElementById('loading-screen').style.display = 'none';
     });
 </script>
-<div class="container">
+<a href="#" class="message-icon px-2 shadow-md rounded-circle bg-dark">
+    <div class="d-flex flex-column align-items-center">
+        <span class="badge bg-primary position-relative">Chat us</span>
+        <i class="bi bi-chat-square-dots-fill"></i>
+
+    </div>
+
+</a>
+
+<div id="main-content" class="container">
     {%block content%}{%endblock%}
 </div>
 
@@ -354,10 +377,31 @@
             <i class="bi bi-paypal"></i>
         </div>
         <p class="text-center text-body-secondary"><strong class="">Dreamzz co 2024, Inc</strong></p>
-                <p class="text-center text-muted">Version 3.0.0</p>
+        <p class="text-center text-muted">Version 3.0.0</p>
 
     </footer>
 </div>
+
+<script>
+    // Example using jQuery for simplicity
+$(document).ready(function() {
+  $('.sidebar ul li a').click(function(event) {
+    event.preventDefault(); // Prevent default link behavior (page reload)
+
+    var url = $(this).attr('href'); // Get the URL of the clicked link
+    $.get(url, function(data) {
+      // Replace the content of the main area with the fetched content
+      $('#main-content').html(data);
+    });
+
+    // Update active class for navbar items
+    $('.sidebar li a').removeClass('text-primary fs-4'); // Remove active class from all items
+    $(this).parent().addClass('text-primary fs-4'); // Add active class to the clicked item
+  });
+});
+
+</script>
+
 <!--<div class="container footer d-none">-->
 <!--    <footer class="d-flex sticky-bottom flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
 <!--        <div class="col-md-4 d-flex align-items-center">-->

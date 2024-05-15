@@ -9,6 +9,10 @@ app_name = "shop"
 urlpatterns = [
     path('', views.index, name='index'),
     path('explore/', views.explore, name='explore'),
+    path('customize/', views.customize, name='customize'),
+
+    path('product-partials/', views.products_partial, name='products_partial'),
+
     path('contact/', views.contact_page, name='contact'),
 
     path('splash/', views.splash, name='splash'),

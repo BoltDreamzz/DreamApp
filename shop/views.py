@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
 from .models import Product, Category
 from django.contrib.auth.decorators import login_required
 from cart.models import Order
@@ -11,7 +14,7 @@ def splash(request):
 
 def index(request):
     categories = Category.objects.all()
-    products = Product.objects.all()[:5]
+    products = Product.objects.all()[5:]
     kiddiesCat = Category.objects.get(name="Kiddies")
     BarbiesCat = Category.objects.get(name="Women")
     kiddiesPro = kiddiesCat.product_set.all()[:4]
@@ -33,18 +36,51 @@ def index(request):
 
 
 # @login_required
+# def explore(request):
+#     categories = Category.objects.all()
+#     products = Product.objects.all()
+#     pro_count = products.count()
+#     return render(request, "shop/explore.html", {
+#         "categories": categories,
+#         "products": products,
+#         "pro_count": pro_count,
+#     })
 def explore(request):
     categories = Category.objects.all()
     products = Product.objects.all()
     pro_count = products.count()
-    return render(request, "shop/explore.html", {
-        "categories": categories,
-        "products": products,
-        "pro_count": pro_count,
-    })
+
+    # Check for AJAX request
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        category_name = request.GET.get('category')
+        if category_name:
+            products = products.filter(category__name=category_name)
+        data = {
+            'html': render_to_string('shop/products_partial.html', {'products': products})
+        }
+        return JsonResponse(data)
+    else:
+        return render(request, "shop/explore.html", {
+            "categories": categories,
+            "products": products,
+            "pro_count": pro_count,
+        })
 
 
-@login_required
+def customize(request):
+    return render(request, "shop/customize.html")
+
+
+def products_partial(request):
+    category_name = request.GET.get('category')
+    if category_name:
+        products = Product.objects.filter(category__name=category_name)
+    else:
+        products = Product.objects.all()
+    html = render_to_string('shop/products_partial.html', {'products': products})
+    return JsonResponse({'html': html})
+
+
 def detail(request, pk):
     product = get_object_or_404(Product, pk=pk, is_sold=False)
     related_items = Product.objects.filter(category=product.category, is_sold=False).exclude(pk=pk)
@@ -59,7 +95,7 @@ def detail(request, pk):
     })
 
 
-@login_required
+# @login_required
 def category_page(request):
     categories = Category.objects.all()
     category_count = categories.count()
@@ -72,7 +108,7 @@ def category_page(request):
 
 @login_required
 def products_by_category(request, category_id):
-    # Retrieve the category object based on the category_id
+    all_cat = Category.objects.all()
     category = Category.objects.get(pk=category_id)
 
     # Filter products based on the selected category
@@ -118,5 +154,7 @@ def order_success(request):
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+
 def contact_page(request):
     return render(request, "shop/contact-us-page.html")

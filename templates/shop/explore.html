@@ -9,7 +9,6 @@
     width: 100%;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     overflow: hidden;
   }
   .scrollable-item img {
@@ -21,9 +20,7 @@
   .product-card img {
     width: 100%;
     height: 200px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-                object-fit: cover;
+    object-fit: cover;
 
   }
 
@@ -52,7 +49,98 @@
     }
   }
 </style>
-<h4>All products <small><span class="badge custom-bg text-info">{{pro_count}}</span></small></h4>
+<style>
+    .explore-menu-list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    margin: 5px 0px;
+    overflow-x: scroll;
+}
+.explore-menu-list::-webkit-scrollbar {
+    display: none;
+}
+    .explore-menu-list-items img {
+    object-fit: cover;
+    
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 0.2s;
+}
+    .explore-menu-list-items .active {
+    border: 5px solid blue;
+    padding: 2px;
+}
+    .bg-outline-dark {
+        border: 1.7px solid black;
+        border-radius: 25px;
+        box-sizing: border-box;
+        min-height: 15px;
+        color: black;
+        font-size: 10px;
+    }
+</style>
+<div class="d-flex align-items-center gap-2">
+    <h4 class="mt-2">Product overview</h4>
+    <small> <span class="badge bg-outline-dark">All available products</span></small>
+
+</div>
+<div class="explore-menu-list">
+    <div class="explore-menu-list">
+        <div class=explore-menu-list-items>
+
+            <a href="{%url 'shop:customize'%}" class="text-decoration-none position-relative">
+                <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <lord-icon
+                        src="https://cdn.lordicon.com/akghgkas.json"
+                        trigger="loop"
+                        delay="2000"
+                        style="width:70px;height:70px">
+                </lord-icon>
+                <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger" style="margin-bottom: 7px;">New</span>
+
+                <p class="text-primary"><strong>Customize <i
+                        class="bi bi-patch-check-fill text-primary fs-5"></i></strong>
+                </p>
+            </a>
+        </div>
+        {% for item in categories %}
+        <div onclick="setCategory('{{ item.name }}')" class='explore-menu-list-items'>
+            <img width="70" height="70" class="{% if category == item.name %}active{% endif %}"
+                 src="{{ item.image.url }}" alt=""/>
+            <p>{{ item.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function setCategory(menuName) {
+            // Send an AJAX request to the server to filter products based on the selected category
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/explore/?category=" + encodeURIComponent(menuName), true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Update the products list with the filtered products
+                    var productsContainer = document.getElementById("products-container");
+                    productsContainer.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</div>
+<!--SEARCH-->
+<div class="my-2 d-flex align-items-center justify-content-between">
+    <form action="{% url 'search:find' %}" method="get" class="w-100 me-3 " role="search">
+        <input name="query" value="{{query}}" type="search" class="form-control rounded-5" placeholder="Find products"
+               aria-label="Search">
+    </form>
+    <a href="#" class="btn rounded-3 custom-bg"><i class="bi fs-3 bi-filter"></i></a>
+    <hr>
+</div>
+<h5>All products <small><span class="badge custom-bg text-info">{{pro_count}}</span></small></h5>
 <div class="container flex-wrap px-2 d-flex justify-content-between">
     {%for pro in products%}
     <div class="product-card">
@@ -93,7 +181,7 @@
                 <!--                <span class="badge custom-bg mb-2 text-success">Category</span>-->
                 <h6><em>Advertise here</em></h6>
                 <div class="d-flex align-items-center justify-content-center">
-<!--                    <h4>₦99.99</h4>-->
+                    <!--                    <h4>₦99.99</h4>-->
                     <a href="#" class="btn btn-outline-dark btn-small rounded-pill">Begin</a>
                     <!--                <a href="#"><i class="bi bi-heart"></i></a>-->
 
@@ -142,21 +230,5 @@
 
 </div>
 
-<!--<div class="product-card">-->
-<!--    <div class="text-center">-->
-<!--            <img src="https://via.placeholder.com/300x300" alt="Product Image">-->
-
-<!--    </div>-->
-<!--&lt;!&ndash;    <div class="product-info">&ndash;&gt;-->
-<!--        <h3>Product Name</h3>-->
-<!--        <p>Description of the product goes here. This is a placeholder text.</p>-->
-<!--        <p>$99.99</p>-->
-<!--        <div class="d-flex">-->
-<!--            <a href="#" class="btn btn-outline-dark">Add to cart</a>-->
-<!--            <a href="#" class="btn btn-bg-dark"><i class="bi bi-heart"></i></a>-->
-
-<!--        </div>-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--</div>-->
 
 {%endblock%}
